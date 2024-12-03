@@ -86,15 +86,20 @@ const predpoved = [
   ];
 
 
-  const detailId = window.location.hash.slice(1);
-  const detailData = predpoved.find((detail) => detail.den === detailId);
-  const mainElement = document.querySelector('main');
-  
-  mainElement.innerHTML += `
+const mainElement = document.querySelector('#main');
+const dayId = window.location.hash.slice(1);
+const currentDay = predpoved.find((day) => day.datum === dayId);
+
+document.title = currentDay.den;
+
+mainElement.innerHTML += `
     <article>
-      <h2>${detailData.den}</h2>
-      <p>${detailData.datum}</p>
-      <p>${detailData.popis_pocasi}</p>
-      <p>Ranní teplota: ${detailData.ranni_teplota}, odpolední teplota: ${detailData.odpoledni_teplota}</p>
-      <a href="detail.html#${detailData.den}">Vrátit se na kompletní předpověď</a>
+      <h1>${currentDay.den} ${new Date(currentDay.datum).toLocaleDateString()}</h1>
+      <p>Denní teplota:<b> ${currentDay.denni_teplota}</b></p>
+      <p>Ranní teplota:<b> ${currentDay.ranni_teplota}</b>, odpolední teplota: <b>${currentDay.odpoledni_teplota}</b>, večerní teplota: <b> ${currentDay.vecerni_teplota}</b></p>
+      <p>Tlak: <b>${currentDay.tlak}</b></p>
+      <p>Rychlost větru: <b>${currentDay.rychlost_vetru} km/h</b></p>
+      <p>Popis počasí: ${currentDay.popis_pocasi}</p>
+
+      <a href="index.html#${currentDay.den}">Vrátit se na kompletní předpověď</a>
     </article>`;

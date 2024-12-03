@@ -85,17 +85,16 @@ const predpoved = [
   },
 ];
 
-const mainElement = document.querySelector('main')
+const mainElement = document.querySelector('#main')
 
-predpoved.forEach((detail) => {
+predpoved.forEach((day) => {
   mainElement.innerHTML += `
-    <div class="article-card">
-      <h2>${detail.datum}  ${detail.den}<h2>
-      <h4>Denní teplota: ${detail.denni_teplota}</h4>
-      <h3>${detail.stav_pocasi}</h3>
-      <h4>Rychlost větru: ${detail.rychlost_vetru}</h4>
-
-      <a href="detail.html#${detail.den}">Přejít na podrobnosti</a>
-    </div>`;
+  <div class="article-card">
+  <h1>${day.den} ${new Date(day.datum).toLocaleDateString()}</h1>
+      <p>Denní teplota: <b>${day.denni_teplota} °C </b></p>
+      <p>Stav počasí: <b>${(day.stav_pocasi).toUpperCase()}</b></p>
+      <p>Rychlost větru: ${day.rychlost_vetru} km/h</p>
+      <a href="detail.html#${day.datum}">Přejít na podrobnosti</a>
+      </div>`;
 })
 
